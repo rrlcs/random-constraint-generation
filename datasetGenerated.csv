@@ -1,0 +1,209 @@
+S No., Constraints, Programs
+1,(and (<= (- (+ y x) (+ y x)) y) (<= x x)),Timeout
+2,(or (= (- y y) (+ (f y x) y)) (= (- y y) (+ (f y x) y))),Timeout
+3,(and (= y y) (= y y)),Timeout
+4,(and (= y (f x x)) (> x y)),Timeout
+5,(or (= (- (f y x) (f y x)) (- (f y x) (f y x))) (= y (- (f y x) (f y x)))),Timeout
+6,(or (> (+ (f y x) x) x) (> (+ (f y x) x) x)),Timeout
+7,(and (<= x y) (<= x y)),n
+
+8,(and (= (+ (f x x) (f x x)) x) (= (+ (f x x) (f x x)) x)),n
+
+9,(or (> (- x (f y y)) x) (> (- x (f y y)) x)),(define-fun f ((x Int) (y Int)) Int (- 1))
+
+10,(and (<= (f y x) y) (= (- y x) (- (- y x) x))),n
+
+11,(or (< y (+ y y)) (< y (+ y y))),n
+
+12,(and (= (- y x) (f x x)) (>= y (- y x))),n
+
+13,(or (< x (+ (f y y) x)) (< x (+ (f y y) x))),(define-fun f ((x Int) (y Int)) Int 1)
+
+14,(and (< y (+ x (f x y))) (< y (+ x (f x y)))),(define-fun f ((x Int) (y Int)) Int (+ 1 (* (- 1) x) y))
+
+15,(and (< (- (f y y) (f y y)) (- (f y y) (f y y))) (< (- (f y y) (f y y)) (- (f y y) (f y y)))),n
+
+16,(or (> (+ (f x y) y) y) (< (- y x) (+ (f x y) y))),(define-fun f ((x Int) (y Int)) Int 1)
+
+17,(and (<= y y) (<= y y)),(define-fun f ((x Int) (y Int)) Int 0)
+
+18,(and (< y x) (< y x)),n
+
+19,(or (<= (- (f x x) (f x x)) y) (<= (- (f x x) (f x x)) y)),n
+
+20,(or (>= (f x x) (- (- (f x x) x) x)) (>= (f x x) (- (- (f x x) x) x))),n
+
+21,(or (> (- y (f y y)) y) (= x (- y (f y y)))),(define-fun f ((x Int) (y Int)) Int (- 0 1))
+
+22,(and (= (- x x) (f x x)) (= (- x x) (f x x))),(define-fun f ((x Int) (y Int)) Int 0)
+
+23,(or (> (+ (f x x) (f x x)) (f x x)) (> y (+ (f x x) (f x x)))),(define-fun f ((x Int) (y Int)) Int 1)
+
+24,(or (< (- y x) x) (< (- y x) x)),n
+
+25,(and (< (f y y) (f y y)) (<= x (f y y))),n
+
+26,(or (>= (f y x) y) (> (- (f y x) y) x)),(define-fun f ((x Int) (y Int)) Int x)
+
+27,(or (>= (+ x y) y) (>= (+ x y) y)),n
+
+28,(and (>= x (f x y)) (>= x (f x y))),(define-fun f ((x Int) (y Int)) Int x)
+
+29,(or (>= (+ x x) x) (<= y y)),(define-fun f ((x Int) (y Int)) Int 0)
+
+30,(or (< (+ y (f y x)) y) (= x y)),(define-fun f ((x Int) (y Int)) Int (- 1))
+
+31,(or (>= (f y x) x) (>= y (+ x (+ (f y x) y)))),(define-fun f ((x Int) (y Int)) Int (* (- 1) y))
+
+32,(and (>= (- x x) (- (f x x) y)) (>= y (f x x))),n
+
+33,(or (= (+ x x) (+ x y)) (= (+ x x) (+ x y))),n
+
+34,(or (<= (f y x) y) (<= (f y x) y)),(define-fun f ((x Int) (y Int)) Int x)
+
+35,(and (<= (f y y) (+ x x)) (< (f y y) (f y y))),n
+
+36,(or (<= y (f x x)) (<= (f x x) (+ x y))),Timeout
+37,(and (>= x (+ y (f x y))) (<= (+ y (f x y)) (f x y))),n
+
+38,(or (<= (f y y) y) (<= (f y y) y)),(define-fun f ((x Int) (y Int)) Int x)
+
+39,(or (= x x) (= x x)),(define-fun f ((x Int) (y Int)) Int 0)
+
+40,(and (>= (- y y) y) (<= (+ y (f x y)) y)),n
+
+41,(or (<= (- y y) y) (<= (- y y) y)),n
+
+42,(or (< x (+ (f x y) y)) (< x (+ (f x y) y))),(define-fun f ((x Int) (y Int)) Int (+ 1 x (* (- 1) y)))
+
+43,(or (= (f x x) y) (>= (- y (f x x)) x)),Timeout
+44,(or (>= (+ x x) (+ y (+ x x))) (>= (+ x x) (+ y (+ x x)))),n
+
+45,(and (= (- x (+ y y)) (f x y)) (= (- x (+ y y)) (f x y))),(define-fun f ((x Int) (y Int)) Int (+ x (* (- 2) y)))
+
+46,(and (> (- x y) (f y x)) (>= (- (f y x) y) (f y x))),n
+
+47,(and (>= (+ x y) x) (>= (+ x y) x)),n
+
+48,(and (>= x (+ x (f y y))) (<= y x)),n
+
+49,(and (<= x (f y y)) (>= (- x y) (+ x y))),n
+
+50,(and (>= y (+ y (f y x))) (<= y y)),(define-fun f ((x Int) (y Int)) Int 0)
+
+51,(or (> (+ (f x y) x) x) (> (+ (f x y) x) x)),(define-fun f ((x Int) (y Int)) Int 1)
+
+52,(or (= (- (f y x) (f y x)) (f y x)) (= (- (f y x) (f y x)) (f y x))),(define-fun f ((x Int) (y Int)) Int 0)
+
+53,(and (> (f x x) (- x y)) (> (f x x) (- x y))),n
+
+54,(or (= (+ (f x x) (f x x)) x) (= (+ (f x x) (f x x)) x)),n
+
+55,(or (>= y (+ x (- x (f y x)))) (>= (f y x) (- x (f y x)))),(define-fun f ((x Int) (y Int)) Int (+ (* (- 1) x) (* 2 y)))
+
+56,(and (> (f x x) (f x x)) (> (f x x) (f x x))),n
+
+57,(and (>= (f y x) (f y x)) (< (- (f y x) y) (- (f y x) y))),n
+
+58,(and (>= (f x x) (+ y (f x x))) (>= (f x x) (+ y (f x x)))),n
+
+59,(and (> y x) (> y x)),n
+
+60,(or (<= (f x y) (+ x y)) (<= (f x y) (+ x y))),(define-fun f ((x Int) (y Int)) Int (+ x y))
+
+61,(and (>= (- x (f x x)) x) (>= (f x x) (+ y x))),n
+
+62,(or (< (f x x) (- (f x x) x)) (< y (f x x))),n
+
+63,(or (= x (- (f x y) x)) (= (f x y) (f x y))),(define-fun f ((x Int) (y Int)) Int 0)
+
+64,(and (= x (f y y)) (> y (+ (f y y) y))),n
+
+65,(and (= (f x x) (+ (f x x) (f x x))) (= (f x x) (+ (f x x) (f x x)))),(define-fun f ((x Int) (y Int)) Int 0)
+
+66,(and (= (- y x) y) (= (- y x) y)),n
+
+67,(and (> (+ x (f x y)) (+ x (f x y))) (> (+ x (f x y)) (+ x (f x y)))),n
+
+68,(or (= y (f x x)) (= y (f x x))),n
+
+69,(and (<= (f y x) (f y x)) (<= (f y x) (f y x))),(define-fun f ((x Int) (y Int)) Int 0)
+
+70,(and (>= (- x x) y) (= (f y x) (- x x))),n
+
+71,(or (< (- (f y y) (- x y)) (- (f y y) (- x y))) (> (- x y) (- x y))),n
+
+72,(and (<= (f y x) (f y x)) (= (f y x) (f y x))),(define-fun f ((x Int) (y Int)) Int 0)
+
+73,(or (< x y) (< x y)),n
+
+74,(and (= (+ x (- y y)) y) (= (+ x (- y y)) y)),n
+
+75,(or (< (+ x (f x x)) (+ x (f x x))) (= (+ x (f x x)) y)),Timeout
+76,(and (>= x (f x y)) (< (+ x x) y)),n
+
+77,(or (<= (f y y) x) (< (- y x) y)),n
+
+78,(or (= (- (f x x) x) x) (= (- (f x x) x) x)),(define-fun f ((x Int) (y Int)) Int (* 2 x))
+
+79,(and (< (f x x) y) (< (f x x) y)),n
+
+80,(or (<= x x) (< y (f y x))),(define-fun f ((x Int) (y Int)) Int 0)
+
+81,(and (>= y y) (= (f y x) y)),(define-fun f ((x Int) (y Int)) Int x)
+
+82,(and (>= y (- x (f y x))) (>= (- x (f y x)) (f y x))),n
+
+83,(and (>= (+ (f x y) y) (+ (f x y) y)) (>= (+ (f x y) y) (+ (f x y) y))),(define-fun f ((x Int) (y Int)) Int 0)
+
+84,(or (<= x (f x y)) (< (f x y) (- (- y (f x y)) (- y (f x y))))),(define-fun f ((x Int) (y Int)) Int (- 1))
+
+85,(or (>= x x) (<= (f x x) x)),(define-fun f ((x Int) (y Int)) Int 0)
+
+86,(and (< (f y x) (f y x)) (> y (f y x))),n
+
+87,(and (>= (+ x x) (+ x x)) (<= x (+ x x))),n
+
+88,(and (>= x y) (>= x y)),n
+
+89,(and (< y (f y x)) (< y (f y x))),(define-fun f ((x Int) (y Int)) Int (+ 1 x))
+
+90,(and (= y (+ x (f y y))) (< (f y y) (f y y))),n
+
+91,(or (= y y) (<= (- (f y x) y) y)),(define-fun f ((x Int) (y Int)) Int 0)
+
+92,(and (>= x x) (>= (+ y x) (+ y x))),(define-fun f ((x Int) (y Int)) Int 0)
+
+93,(and (= (f y y) (f y y)) (= (f y y) (f y y))),(define-fun f ((x Int) (y Int)) Int 0)
+
+94,(or (> x x) (> x x)),n
+
+95,(or (>= x (f x y)) (>= (+ (f x y) (f x y)) x)),(define-fun f ((x Int) (y Int)) Int (- 1))
+
+96,(and (= (f y y) (+ (f y y) y)) (= (f y y) (+ (f y y) y))),n
+
+97,(or (> (- (f x y) x) (f x y)) (< x (- (f x y) x))),(define-fun f ((x Int) (y Int)) Int (+ 1 (* 2 x)))
+
+98,(or (> (f y x) (- x y)) (= (- x y) y)),(define-fun f ((x Int) (y Int)) Int (+ 1 (* (- 1) x) y))
+
+99,(or (>= y x) (>= (- y (f x y)) y)),(define-fun f ((x Int) (y Int)) Int 0)
+
+100,(and (>= (f y y) (+ x (f y y))) (>= (f y y) (+ x (f y y)))),n
+
+101,(or (<= y x) (> y y)),n
+
+102,(or (= (- x x) (- x x)) (= (- x x) y)),(define-fun f ((x Int) (y Int)) Int 0)
+
+103,(and (> (+ x y) (+ x y)) (> (+ x y) (+ x y))),n
+
+104,(and (<= y (- y y)) (<= y (f y x))),n
+
+105,(and (<= (- y (+ x y)) (+ x y)) (>= (f x y) (+ x y))),n
+
+106,(and (> (- (+ y x) (f y x)) (- (+ y x) (f y x))) (> (- (+ y x) (f y x)) (- (+ y x) (f y x)))),n
+
+107,(or (> y (f x x)) (> y (f x x))),n
+
+108,(or (<= (f x y) y) (<= (f x y) y)),(define-fun f ((x Int) (y Int)) Int y)
+
+109,(or (= (- (f x x) x) (- (f x x) x)) (>= (- (f x x) x) y)),(define-fun f ((x Int) (y Int)) Int 0)
