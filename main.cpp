@@ -4,6 +4,7 @@
 #include <iterator>
 #include <fstream>
 #include <chrono>
+#include <algorithm>
 //Header only libraries
 #include "expressionAst.h"
 // #include "expressionVisitors.h"
@@ -78,6 +79,7 @@ int main(int argc, char* argv[])
     auto t1 = std::chrono::high_resolution_clock::now();
 
     std::string filenum = argv[1];
+    std::string datapoints = argv[2];
     int numOfParam = 2; // Initial Operands;
     int numOfConst = 0;
     int numOfUninterpretedFunct = 1;
@@ -136,11 +138,11 @@ int main(int argc, char* argv[])
         LogicalOperandList.push_back(exp1);
     }
     
-    LogicalOperandList.back()->prettyPrinter();
-    std::cout<<"\n";
+    // LogicalOperandList.back()->prettyPrinter();
+    // std::cout<<"\n";
     std::string constraint = LogicalOperandList.back()->formulaToString();
-    std::cout<<constraint;
-    std::cout<<"\n";
+    // std::cout<<constraint;
+    // std::cout<<"\n";
 
     std::string sygusFile = insertConstraint(templateFile, constraint);
 
@@ -148,28 +150,35 @@ int main(int argc, char* argv[])
     std::ofstream slFile("Dataset/"+name);
     slFile << sygusFile;
     slFile.close();
-    // slFile.
     
     std::string program="\0";
     std::string cmd = "timeout 0.1s cvc4 /home/ravi/Ubuntu-WSL-20/PSML/DatasetGeneration/Dataset/"+name+" 2> /dev/null";
     std::string result = runCVC4(cmd);
-    // std::cout<<result;
-    name = "datasetGenerated.csv";
+
+    auto t2 = std::chrono::high_resolution_clock::now();
+    auto duration = std::chrono::duration_cast<std::chrono::microseconds>( t2 - t1 ).count();
+
+    std::string execTime = std::to_string(duration);
+    name = "datasetGenerated"+datapoints+".csv";
     if(result == "\0")
     {
-        std::cout<<"Error: Timeout";
-        writeToCSV(name, "\n"+filenum+","+constraint+","+"Timeout", true);
+        // std::cout<<"Error: Timeout";
+        writeToCSV(name, "\n"+filenum+","+constraint+","+"Timeout"+","+execTime, true);
+    }
+    else if (result == "unknown\n")
+    {
+        writeToCSV(name, "\n"+filenum+","+constraint+","+"unknown"+","+execTime, true);
     }
     else
     {
         program = result.substr(6, result.size() - 6);
-        // std::cout << program;
-        writeToCSV(name, "\n"+filenum+","+constraint+","+program, true);
+        program.erase(std::remove(program.begin(), program.end(), '\n'), program.end());
+        writeToCSV(name, "\n"+filenum+","+constraint+","+program+","+execTime, true);
     }
 
-    auto t2 = std::chrono::high_resolution_clock::now();
-    auto duration = std::chrono::duration_cast<std::chrono::microseconds>( t2 - t1 ).count();
-    std::cout << "Execution Time: " << duration;
+    
+    // std::cout << "Execution Time: " << duration;
+    // std::ofstream et("")
 
     //new and delete. malloc and free. preferably don't mix.
     // free memory
