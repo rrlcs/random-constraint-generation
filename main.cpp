@@ -5,6 +5,7 @@
 #include <fstream>
 #include <chrono>
 #include <algorithm>
+#include <string>
 //Header only libraries
 #include "expressionAst.h"
 // #include "expressionVisitors.h"
@@ -74,6 +75,23 @@ void writeToCSV(const std::string& name, const std::string& content, bool append
     outfile << content;
 }
 
+std::string getRandomConstraint(int numOfOperator, std::vector<Formula *> ArithmaticOperandList, std::vector<ArithmaticOperator *> ArithmaticOperatorList, std::vector<Formula *> ComparisonOperandList, std::vector<ComparisonOperator *> ComparisonOperatorList, std::vector<Formula *> LogicalOperandList, std::vector<LogicalOperator *> LogicalOperatorList)
+{
+    FormulaBinaryExp *exp1;
+    for(int i = 0; i<numOfOperator; i+=3)
+        {
+            // std::cout<<i<<"\n";
+            exp1 = new FormulaBinaryExp(*select_randomly(ArithmaticOperandList.begin(), ArithmaticOperandList.end()), *select_randomly(ArithmaticOperandList.begin(), ArithmaticOperandList.end()), *select_randomly(ArithmaticOperatorList.begin(), ArithmaticOperatorList.end()));
+            ArithmaticOperandList.push_back(exp1);
+            exp1 = new FormulaBinaryExp(*select_randomly(ArithmaticOperandList.begin(), ArithmaticOperandList.end()), *select_randomly(ArithmaticOperandList.begin(), ArithmaticOperandList.end()), *select_randomly(ComparisonOperatorList.begin(), ComparisonOperatorList.end()));
+            ComparisonOperandList.push_back(exp1);
+            exp1 = new FormulaBinaryExp(*select_randomly(ComparisonOperandList.begin(), ComparisonOperandList.end()), *select_randomly(ComparisonOperandList.begin(), ComparisonOperandList.end()), *select_randomly(LogicalOperatorList.begin(), LogicalOperatorList.end()));
+            LogicalOperandList.push_back(exp1);
+        }
+    std::string constraint = LogicalOperandList.back()->formulaToString();
+    return constraint;
+}
+
 int main(int argc, char* argv[])
 {
     auto t1 = std::chrono::high_resolution_clock::now();
@@ -122,59 +140,63 @@ int main(int argc, char* argv[])
 
     FunctionOperator *f = new FunctionOperator("f");
     FormulaBinaryExp *exp1;
-    exp1 = new FormulaBinaryExp(*select_randomly(ArithmaticOperandList.begin(), ArithmaticOperandList.end()), *select_randomly(ArithmaticOperandList.begin(), ArithmaticOperandList.end()), f);
+    exp1 = new FormulaBinaryExp(x, y, f);
+    ArithmaticOperandList.push_back(exp1);
+    exp1 = new FormulaBinaryExp(y, x, f);
     ArithmaticOperandList.push_back(exp1);
 
     std::string templateFile = "(set-logic LIA)\n(synth-fun f ((x Int) (y Int)) Int)\n(declare-var x Int)\n(declare-var y Int)\n(constraint $$)\n(check-synth)";
-
-    for(int i = 0; i<numOfOperator; i+=3)
+    int tmp = 1;
+    std::string func = "f";
+    std::string constraint;
+    std::string sygusFile;
+    while(tmp)
     {
-        // std::cout<<i<<"\n";
-        exp1 = new FormulaBinaryExp(*select_randomly(ArithmaticOperandList.begin(), ArithmaticOperandList.end()), *select_randomly(ArithmaticOperandList.begin(), ArithmaticOperandList.end()), *select_randomly(ArithmaticOperatorList.begin(), ArithmaticOperatorList.end()));
-        ArithmaticOperandList.push_back(exp1);
-        exp1 = new FormulaBinaryExp(*select_randomly(ArithmaticOperandList.begin(), ArithmaticOperandList.end()), *select_randomly(ArithmaticOperandList.begin(), ArithmaticOperandList.end()), *select_randomly(ComparisonOperatorList.begin(), ComparisonOperatorList.end()));
-        ComparisonOperandList.push_back(exp1);
-        exp1 = new FormulaBinaryExp(*select_randomly(ComparisonOperandList.begin(), ComparisonOperandList.end()), *select_randomly(ComparisonOperandList.begin(), ComparisonOperandList.end()), *select_randomly(LogicalOperatorList.begin(), LogicalOperatorList.end()));
-        LogicalOperandList.push_back(exp1);
+        constraint = getRandomConstraint(numOfOperator, ArithmaticOperandList, ArithmaticOperatorList, ComparisonOperandList, ComparisonOperatorList, LogicalOperandList, LogicalOperatorList);
+        if (constraint.find(func) != std::string::npos)
+        {
+            // std::cout << "found!" << '\n';
+            sygusFile = insertConstraint(templateFile, constraint);
+            std::string name = "randomlyGeneratedBenchmark_"+filenum+".sl";
+            std::ofstream slFile("Dataset10000v2/"+name);
+            slFile << sygusFile;
+            slFile.close();
+            std::string program="\0";
+            std::string cmd = "timeout 0.1s cvc4 /home/ravi/Ubuntu-WSL-20/PSML/DatasetGeneration/Dataset10000v2/"+name+" 2> /dev/null";
+            std::string result = runCVC4(cmd);
+
+            auto t2 = std::chrono::high_resolution_clock::now();
+            auto duration = std::chrono::duration_cast<std::chrono::microseconds>( t2 - t1 ).count();
+
+            std::string execTime = std::to_string(duration);
+            name = "datasetGenerated"+datapoints+"v2.csv";
+            if(result == "\0")
+            {
+                // std::cout<<"Error: Timeout";
+                writeToCSV(name, "\n"+filenum+","+constraint+","+"Timeout"+","+execTime, true);
+            }
+            else if (result == "unknown\n")
+            {
+                writeToCSV(name, "\n"+filenum+","+constraint+","+"unknown"+","+execTime, true);
+            }
+            else
+            {
+                program = result.substr(6, result.size() - 6);
+                program.erase(std::remove(program.begin(), program.end(), '\n'), program.end());
+                writeToCSV(name, "\n"+filenum+","+constraint+","+program+","+execTime, true);
+            }
+
+            tmp = 0;
+        }
     }
-    
-    // LogicalOperandList.back()->prettyPrinter();
-    // std::cout<<"\n";
-    std::string constraint = LogicalOperandList.back()->formulaToString();
     // std::cout<<constraint;
     // std::cout<<"\n";
 
-    std::string sygusFile = insertConstraint(templateFile, constraint);
-
-    std::string name = "randomlyGeneratedBenchmark_"+filenum+".sl";
-    std::ofstream slFile("Dataset/"+name);
-    slFile << sygusFile;
-    slFile.close();
     
-    std::string program="\0";
-    std::string cmd = "timeout 0.1s cvc4 /home/ravi/Ubuntu-WSL-20/PSML/DatasetGeneration/Dataset/"+name+" 2> /dev/null";
-    std::string result = runCVC4(cmd);
 
-    auto t2 = std::chrono::high_resolution_clock::now();
-    auto duration = std::chrono::duration_cast<std::chrono::microseconds>( t2 - t1 ).count();
-
-    std::string execTime = std::to_string(duration);
-    name = "datasetGenerated"+datapoints+".csv";
-    if(result == "\0")
-    {
-        // std::cout<<"Error: Timeout";
-        writeToCSV(name, "\n"+filenum+","+constraint+","+"Timeout"+","+execTime, true);
-    }
-    else if (result == "unknown\n")
-    {
-        writeToCSV(name, "\n"+filenum+","+constraint+","+"unknown"+","+execTime, true);
-    }
-    else
-    {
-        program = result.substr(6, result.size() - 6);
-        program.erase(std::remove(program.begin(), program.end(), '\n'), program.end());
-        writeToCSV(name, "\n"+filenum+","+constraint+","+program+","+execTime, true);
-    }
+    
+    
+    
 
     
     // std::cout << "Execution Time: " << duration;

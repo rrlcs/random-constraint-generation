@@ -1,6 +1,6 @@
-datapoints=100000
+datapoints=10000
 shopt -s nullglob
-numfiles=(./Dataset/*)
+numfiles=(./Dataset10000v2/*)
 numfiles=${#numfiles[@]}
 # echo $numfiles
 range=datapoints+numfiles

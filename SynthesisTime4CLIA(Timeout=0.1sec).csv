@@ -1,0 +1,89 @@
+S. No. , File Name , Program , Synthesis Time(micro-sec)
+1,arraysearch16.sl,Timeout,144737
+2,arraysearch17.sl,Timeout,148589
+3,arraysearch18.sl,Timeout,149046
+4,arraysearch19.sl,Timeout,146579
+5,arraysearch20.sl,Timeout,146158
+6,diff.sl,Timeout,145187
+7,jmbl_fg_VC22_a.sl,Timeout,148438
+8,jmbl_fg_VC22_b.sl,Timeout,151216
+9,jmbl_fg_array_search_10.sl,Timeout,147829
+10,jmbl_fg_array_search_11.sl,Timeout,146519
+11,jmbl_fg_array_search_12.sl,Timeout,145575
+12,jmbl_fg_array_search_13.sl,Timeout,147370
+13,jmbl_fg_array_search_14.sl,Timeout,150289
+14,jmbl_fg_array_search_15.sl,Timeout,147281
+15,jmbl_fg_array_search_2.sl,(define-fun findIdx ((y1 Int) (y2 Int) (k1 Int)) Int (let ((_let_0 (* (- 1) k1))) (let ((_let_1 (+ y1 _let_0))) (let ((_let_2 (not (>= _let_1 1)))) (let ((_let_3 (+ y2 _let_0))) (let ((_let_4 (>= _let_3 0))) (let ((_let_5 (>= _let_1 0))) (let ((_let_6 (>= _let_3 1))) (ite (and (not (>= (+ y1 (* (- 1) y2)) 0)) (or (>= _let_1 1) (and _let_6 (not _let_5)) (not _let_4))) (ite (and _let_2 _let_4) 1 (ite (and _let_2 (or _let_5 (not _let_6))) 2 0)) (- 1)))))))))),125697
+16,jmbl_fg_array_search_3.sl,(define-fun findIdx ((y1 Int) (y2 Int) (y3 Int) (k1 Int)) Int (let ((_let_0 (* (- 1) k1))) (let ((_let_1 (+ y1 _let_0))) (let ((_let_2 (not (>= _let_1 1)))) (let ((_let_3 (+ y3 _let_0))) (let ((_let_4 (>= _let_3 0))) (let ((_let_5 (>= _let_1 0))) (let ((_let_6 (+ y2 _let_0))) (let ((_let_7 (not (>= _let_6 1)))) (let ((_let_8 (>= _let_6 0))) (let ((_let_9 (not (>= _let_3 1)))) (let ((_let_10 (or _let_5 _let_7))) (let ((_let_11 (or _let_8 _let_9))) (ite (and (not (>= (+ y1 (* (- 1) y2)) 0)) (not (>= (+ y2 (* (- 1) y3)) 0)) (or (>= _let_1 1) (not _let_4) (and (>= _let_6 1) (not _let_5)) (and (>= _let_3 1) (not _let_8)))) (ite (and _let_2 _let_4 _let_10) 2 (ite (and _let_2 _let_4 _let_11) 1 (ite (and _let_4 _let_10 _let_11) 0 3))) (- 1))))))))))))))),135823
+17,jmbl_fg_array_search_4.sl,Timeout,147337
+18,jmbl_fg_array_search_5.sl,Timeout,145409
+19,jmbl_fg_array_search_6.sl,Timeout,146485
+20,jmbl_fg_array_search_7.sl,Timeout,147271
+21,jmbl_fg_array_search_8.sl,Timeout,143463
+22,jmbl_fg_array_search_9.sl,Timeout,144728
+23,jmbl_fg_array_sum_10_15.sl,Timeout,147672
+24,jmbl_fg_array_sum_10_5.sl,Timeout,143905
+25,jmbl_fg_array_sum_2_15.sl,(define-fun fnd_sum ((y1 Int) (y2 Int)) Int (let ((_let_0 (+ y1 y2))) (ite (and (>= _let_0 16) (not (= y1 (* (- 1) y2)))) _let_0 0))),119913
+26,jmbl_fg_array_sum_2_5.sl,(define-fun fnd_sum ((y1 Int) (y2 Int)) Int (let ((_let_0 (+ y1 y2))) (ite (and (>= _let_0 6) (not (= y1 (* (- 1) y2)))) _let_0 0))),122710
+27,jmbl_fg_array_sum_3_15.sl,(define-fun fnd_sum ((y1 Int) (y2 Int) (y3 Int)) Int (let ((_let_0 (+ y1 y2))) (let ((_let_1 (>= _let_0 16))) (let ((_let_2 (not _let_1))) (let ((_let_3 (* (- 1) y2))) (let ((_let_4 (= y1 _let_3))) (let ((_let_5 (+ y2 y3))) (let ((_let_6 (>= _let_5 16))) (let ((_let_7 (not _let_6))) (ite (and (or _let_2 _let_4) (or _let_1 _let_7 (= y2 (* (- 1) y3)))) 0 (ite (and _let_2 (or (and _let_6 (not (= y1 y3))) (and _let_7 (not _let_4)))) _let_5 _let_0))))))))))),129403
+28,jmbl_fg_array_sum_3_5.sl,(define-fun fnd_sum ((y1 Int) (y2 Int) (y3 Int)) Int (let ((_let_0 (+ y1 y2))) (let ((_let_1 (>= _let_0 6))) (let ((_let_2 (not _let_1))) (let ((_let_3 (* (- 1) y2))) (let ((_let_4 (= y1 _let_3))) (let ((_let_5 (+ y2 y3))) (let ((_let_6 (>= _let_5 6))) (let ((_let_7 (not _let_6))) (ite (and (or _let_2 _let_4) (or _let_1 _let_7 (= y2 (* (- 1) y3)))) 0 (ite (and _let_2 (or (and _let_6 (not (= y1 y3))) (and _let_7 (not _let_4)))) _let_5 _let_0))))))))))),128628
+29,jmbl_fg_array_sum_4_15.sl,Timeout,147937
+30,jmbl_fg_array_sum_4_5.sl,Timeout,145858
+31,jmbl_fg_array_sum_5_15.sl,Timeout,145346
+32,jmbl_fg_array_sum_6_15.sl,Timeout,145865
+33,jmbl_fg_array_sum_6_5.sl,Timeout,143989
+34,jmbl_fg_array_sum_7_15.sl,Timeout,146715
+35,jmbl_fg_array_sum_7_5.sl,Timeout,145054
+36,jmbl_fg_array_sum_8_15.sl,Timeout,147457
+37,jmbl_fg_array_sum_8_5.sl,Timeout,143860
+38,jmbl_fg_array_sum_9_15.sl,Timeout,146976
+39,jmbl_fg_array_sum_9_5.sl,Timeout,145387
+40,jmbl_fg_eightfuncs.sl,(define-fun f1 ((p1 Int) (P1 Int)) Int (+ (- 2) P1))(define-fun f2 ((p1 Int) (P1 Int)) Int (+ (- 4) (* 2 P1)))(define-fun f3 ((p1 Int) (P1 Int)) Int (+ (- 6) (* 2 P1)))(define-fun f4 ((p1 Int) (P1 Int)) Int (+ (- 8) (* 4 P1)))(define-fun f5 ((p1 Int) (P1 Int)) Int (+ (- 10) (* 5 P1)))(define-fun g1 ((p1 Int) (P1 Int)) Int (- 2))(define-fun g2 ((p1 Int) (P1 Int)) Int (- 1))(define-fun g3 ((p1 Int) (P1 Int)) Int 0),135822
+41,jmbl_fg_fivefuncs.sl,(define-fun f1 ((p1 Int) (P1 Int)) Int 0)(define-fun f2 ((p1 Int) (P1 Int)) Int 0)(define-fun f3 ((p1 Int) (P1 Int)) Int (* (- 1) P1))(define-fun f4 ((p1 Int) (P1 Int)) Int 0)(define-fun f5 ((p1 Int) (P1 Int)) Int 0),126764
+42,jmbl_fg_max10.sl,Timeout,147292
+43,jmbl_fg_max11.sl,Timeout,144312
+44,jmbl_fg_max12.sl,Timeout,145408
+45,jmbl_fg_max13.sl,Timeout,139973
+46,jmbl_fg_max14.sl,Timeout,136380
+47,jmbl_fg_max15.sl,Timeout,147445
+48,jmbl_fg_max2.sl,(define-fun mux_2 ((x Int) (y Int)) Int (ite (>= (+ x (* (- 1) y)) 1) x y)),120396
+49,jmbl_fg_max3.sl,(define-fun mux_3 ((x Int) (y Int) (z Int)) Int (let ((_let_0 (* (- 1) y))) (let ((_let_1 (+ x _let_0))) (let ((_let_2 (* (- 1) z))) (ite (and (not (>= _let_1 1)) (>= (+ y _let_2) 0)) y (ite (and (>= _let_1 0) (>= (+ x _let_2) 0)) x z)))))),125491
+50,jmbl_fg_max4.sl,(define-fun mux_4 ((x Int) (y Int) (z Int) (w Int)) Int (let ((_let_0 (* (- 1) z))) (let ((_let_1 (+ x _let_0))) (let ((_let_2 (+ y _let_0))) (let ((_let_3 (* (- 1) w))) (let ((_let_4 (* (- 1) y))) (let ((_let_5 (+ x _let_4))) (ite (and (not (>= _let_1 1)) (not (>= _let_2 1)) (>= (+ z _let_3) 0)) z (ite (and (>= _let_5 0) (>= _let_1 0) (>= (+ x _let_3) 0)) x (ite (and (not (>= _let_5 1)) (>= _let_2 0) (>= (+ y _let_3) 0)) y w)))))))))),139548
+51,jmbl_fg_max5.sl,Timeout,144312
+52,jmbl_fg_max6.sl,Timeout,144551
+53,jmbl_fg_max7.sl,Timeout,149171
+54,jmbl_fg_max8.sl,Timeout,149419
+55,jmbl_fg_max9.sl,Timeout,145750
+56,jmbl_fg_mpg_example1.sl,(define-fun ex ((x Int) (y Int)) Int (ite (and (>= x 5) (not (= (* 2 x) (+ (- 16) (* (- 3) y))))) (+ 17 (* 5 x) (* 3 y)) (+ 1 (* 3 x)))),140078
+57,jmbl_fg_mpg_example2.sl,Timeout,144704
+58,jmbl_fg_mpg_example3.sl,Timeout,147972
+59,jmbl_fg_mpg_example4.sl,Timeout,123289
+60,jmbl_fg_mpg_example5.sl,Timeout,114590
+61,jmbl_fg_mpg_guard1.sl,Timeout,151242
+62,jmbl_fg_mpg_guard2.sl,Timeout,173905
+63,jmbl_fg_mpg_guard3.sl,Timeout,177106
+64,jmbl_fg_mpg_guard4.sl,Timeout,173834
+65,jmbl_fg_mpg_ite1.sl,(define-fun eq_1 ((x Int) (y Int) (z Int)) Int (let ((_let_0 (+ x y))) (let ((_let_1 (+ x z))) (let ((_let_2 (>= _let_1 1))) (let ((_let_3 (not (>= _let_0 1)))) (let ((_let_4 (+ y z))) (let ((_let_5 (>= _let_4 1))) (let ((_let_6 (not (= x y)))) (ite (and (or _let_3 (and (not _let_2) (or _let_5 _let_6))) (or _let_5 (not (= x z)))) (ite (and (or _let_2 (not (= y z))) (or _let_3 (and _let_2 (or (not _let_5) _let_6)))) (+ 1 z) (+ 1 y)) (+ 1 x)))))))))),159078
+66,jmbl_fg_mpg_ite2.sl,(define-fun eq_1 ((x Int) (y Int) (z Int)) Int (let ((_let_0 (+ x y))) (let ((_let_1 (>= _let_0 1))) (let ((_let_2 (+ x z))) (let ((_let_3 (>= _let_2 1))) (let ((_let_4 (not _let_1))) (let ((_let_5 (+ y z))) (let ((_let_6 (>= _let_5 1))) (let ((_let_7 (not _let_6))) (let ((_let_8 (>= z 1))) (let ((_let_9 (not _let_8))) (let ((_let_10 (not (= y z)))) (ite (and (or _let_4 (and _let_3 (or _let_7 (not (= x y))))) (or _let_1 (and _let_6 (or _let_9 _let_10)))) (ite (and (or _let_4 (and (or _let_3 _let_10) (or _let_9 (not (= x z))))) (or _let_1 (and _let_7 (or _let_8 _let_10)))) (+ 1 x) (+ 1 z)) (+ 1 y)))))))))))))),105288
+67,jmbl_fg_mpg_plane1.sl,Timeout,182932
+68,jmbl_fg_mpg_plane2.sl,Timeout,183678
+69,jmbl_fg_mpg_plane3.sl,Timeout,176249
+70,jmbl_fg_ninefuncs.sl,Timeout,165344
+71,jmbl_fg_polynomial.sl,Timeout,161733
+72,jmbl_fg_polynomial1.sl,(define-fun add_expr_1 ((x Int) (y Int)) Int x)(define-fun add_expr_2 ((x Int) (y Int)) Int x),154938
+73,jmbl_fg_polynomial2.sl,Timeout,167465
+74,jmbl_fg_polynomial3.sl,Timeout,166319
+75,jmbl_fg_polynomial4.sl,Timeout,165053
+76,jmbl_fg_sevenfuncs.sl,Timeout,161604
+77,jmbl_fg_sixfuncs.sl,Timeout,176858
+78,jmbl_fg_tenfunc1.sl,Timeout,178824
+79,jmbl_fg_tenfunc2.sl,Timeout,174529
+80,large.sl,Timeout,170760
+81,large_linear_func.sl,Timeout,171621
+82,max16.sl,Timeout,168506
+83,max17.sl,Timeout,165485
+84,max18.sl,Timeout,164119
+85,max19.sl,Timeout,161289
+86,max20.sl,Timeout,163054
+87,small.sl,Timeout,157929
+88,small_linear_func.sl,Timeout,157681
