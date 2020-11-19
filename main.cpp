@@ -154,8 +154,8 @@ int main(int argc, char* argv[])
     std::string program_ext;
     while(tmp)
     {
-        //constraint = getRandomConstraint(numOfOperator, ArithmaticOperandList, ArithmaticOperatorList, ComparisonOperandList, ComparisonOperatorList, LogicalOperandList, LogicalOperatorList);
-        constraint = runCVC4(cmd1);
+        constraint = getRandomConstraint(numOfOperator, ArithmaticOperandList, ArithmaticOperatorList, ComparisonOperandList, ComparisonOperatorList, LogicalOperandList, LogicalOperatorList);
+        // constraint = runCVC4(cmd1); //Grammar based constraint generation
         constraint.erase(std::remove(constraint.begin(), constraint.end(), '\n'), constraint.end());
         if (constraint.find(func) != std::string::npos)
         {

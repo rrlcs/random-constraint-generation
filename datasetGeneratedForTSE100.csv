@@ -113,3 +113,103 @@ S No., Constraints, Programs, Extracted Programs, Exec. Time
 112,( and ( > ( - ( + ( f x y ) ( + ( f x y ) ( f x y ) ) ) ( f x y ) ) ( f x y ) ) ( <= x ( f x y ) ) ),(define-fun f ((x Int) (y Int)) Int (ite (>= x 2) x 1)),((ite (>= x 2) x 1)),4155740
 113,( and ( = ( + y ( f x y ) ) ( f x y ) ) ( = ( f x y ) ( f x y ) ) ),unknown,3170341
 114,( and ( > ( f x y ) x ) ( <= x ( f x y ) ) ),(define-fun f ((x Int) (y Int)) Int (+ 1 x)),((+ 1 x)),4245686
+115,(or (< (f x y) (+ x (f y x))) (< (f x y) (+ x (f y x)))),Timeout,548106
+116,(and (= (- y (- y y)) (- y (- y y))) (<= (f x y) x)),Timeout,35895
+117,(or (<= x (f x y)) (<= x (f x y))),Timeout,37115
+118,(and (<= (f x y) x) (<= (f x y) x)),Timeout,48366
+119,(and (< y (+ y (f x y))) (< y (+ y (f x y)))),Timeout,50788
+120,(or (= (f y x) (+ y (f x y))) (= (f y x) (+ y (f x y)))),Timeout,33645
+121,(or (> x x) (>= (- (f x y) y) (f x y))),Timeout,41330
+122,(or (>= (- (f y x) y) (- (f x y) y)) (< y y)),Timeout,41963
+123,(and (>= (+ (f x y) (f x y)) (f x y)) (>= (+ (f x y) (f x y)) (f x y))),Timeout,44586
+124,(and (> (f x y) y) (> (f x y) y)),Timeout,43162
+125,(and (>= y (f y x)) (= (+ (f y x) y) (f y x))),Timeout,37963
+126,(or (<= x (- (f x y) y)) (<= x (- (f x y) y))),Timeout,39252
+127,(and (< (f y x) (f y x)) (< (f y x) (f y x))),Timeout,37211
+128,(or (< (f x y) y) (= x (- (f y x) x))),Timeout,36837
+129,(and (< (+ (f y x) (f y x)) y) (< (+ (f y x) (f y x)) y)),Timeout,41757
+130,(or (< (+ x (f x y)) x) (>= (f y x) (f x y))),Timeout,39773
+131,(or (> (+ (f x y) (f x y)) x) (> (+ (f x y) (f x y)) x)),Timeout,35331
+132,(or (<= (+ x (f y x)) (f x y)) (>= x (f x y))),Timeout,45579
+133,(or (< (f x y) y) (< (f x y) y)),Timeout,40514
+134,(and (< (f x y) x) (< (f x y) x)),Timeout,40384
+135,(and (> (f y x) y) (<= (f y x) (f x y))),Timeout,62774
+136,(or (= (f x y) x) (< (f y x) (f y x))),Timeout,44747
+137,(or (>= (f y x) (f x y)) (>= (f y x) (f x y))),Timeout,38340
+138,(and (>= (f x y) (f x y)) (>= (f x y) (f x y))),Timeout,36503
+139,(or (= x (f y x)) (>= (+ (f y x) (f x y)) y)),Timeout,44898
+140,(or (<= (f y x) x) (> (f x y) (- (f y x) (f y x)))),Timeout,41196
+141,(and (= (f x y) (+ x (f x y))) (= (f x y) (+ x (f x y)))),Timeout,47747
+142,(or (<= x (- x (f y x))) (<= x (- x (f y x)))),Timeout,39950
+143,(and (= y (f y x)) (= y (f y x))),Timeout,43249
+144,(and (< (f x y) (+ (f x y) (f x y))) (< (f x y) (+ (f x y) (f x y)))),Timeout,42108
+145,(or (< (f x y) (+ (f y x) (- y x))) (< (f x y) (f x y))),Timeout,37236
+146,(or (<= y y) (= (f y x) x)),Timeout,35375
+147,(and (= (+ y (f y x)) y) (= (+ y (f y x)) y)),Timeout,40821
+148,(or (< y x) (>= (f y x) (- (f y x) x))),Timeout,39169
+149,(or (>= (+ (f y x) x) (f y x)) (>= (+ (f y x) x) (f y x))),Timeout,38037
+150,(or (= x (+ y (f x y))) (= x (+ y (f x y)))),Timeout,39168
+151,(and (= (f y x) (- y x)) (= (f y x) (- y x))),Timeout,35897
+152,(and (> (f x y) y) (> (f x y) y)),Timeout,36034
+153,(and (< (+ y (f y x)) (f y x)) (> y (+ y (f y x)))),Timeout,40486
+154,(and (< (f x y) (- (f x y) y)) (< (f x y) (- (f x y) y))),Timeout,44697
+155,(and (= (f x y) x) (>= (f x y) y)),Timeout,40366
+156,(or (>= x (f x y)) (> (- (+ (f x y) (f x y)) (+ (f x y) (f x y))) x)),Timeout,42745
+157,(and (> y x) (= x (f y x))),Timeout,43113
+158,(or (< x y) (< (+ x y) (f x y))),Timeout,39615
+159,(and (> (f y x) y) (>= (+ x y) y)),Timeout,43320
+160,(and (<= (f x y) (+ (f x y) y)) (<= (- x y) y)),Timeout,39213
+161,(or (>= (f y x) (f y x)) (>= (f y x) (f y x))),Timeout,40954
+162,(and (>= (+ y (f x y)) x) (>= (+ y (f x y)) x)),Timeout,33944
+163,(and (>= y (f x y)) (> (f x y) x)),Timeout,42484
+164,(or (= (f y x) (- (f x y) y)) (= (f y x) (- (f x y) y))),Timeout,38862
+165,(or (< (+ (f y x) x) (+ (f y x) x)) (> (- y (f y x)) (- y (f y x)))),Timeout,42482
+166,(or (>= x (+ (f x y) (f y x))) (>= x (+ (f x y) (f y x)))),Timeout,43362
+167,(and (< x (+ x (+ (f x y) (f y x)))) (<= x (f y x))),Timeout,39658
+168,(and (= x (+ (f x y) x)) (= x (+ (f x y) x))),Timeout,40045
+169,(or (<= (- x x) (f y x)) (<= (- x x) (f y x))),Timeout,37443
+170,(and (<= y (f x y)) (<= y (f x y))),Timeout,37154
+171,(or (> (f x y) (- y (f x y))) (>= y x)),Timeout,40233
+172,(or (> y (f x y)) (< y (+ (f y x) (f y x)))),Timeout,38104
+173,(or (<= y (f y x)) (<= y (f y x))),Timeout,40387
+174,(or (<= y x) (> x (- y (f x y)))),Timeout,43819
+175,(and (< y (+ y (f x y))) (<= (f y x) (+ y (f x y)))),Timeout,40323
+176,(or (> y (f x y)) (= (f y x) (f x y))),Timeout,36585
+177,(and (<= y y) (>= x (+ y (f y x)))),Timeout,42840
+178,(or (<= (- y (f x y)) (f y x)) (< (+ (f y x) (- y (f x y))) (- y (f x y)))),Timeout,43982
+179,(or (<= (f x y) (f x y)) (>= (+ y (f x y)) (f y x))),Timeout,44697
+180,(or (= (+ y (f x y)) (f x y)) (= (+ y (f x y)) (f x y))),Timeout,41651
+181,(or (> (- x (- x (f x y))) (- x (- x (f x y)))) (<= x (f y x))),Timeout,48443
+182,(or (>= (f x y) (f x y)) (= (- (f y x) (f y x)) (f y x))),Timeout,37877
+183,(and (> x (f x y)) (> x (f x y))),Timeout,39639
+184,(and (= (f x y) (- x x)) (= (f x y) (- x x))),Timeout,36123
+185,(or (= y (f y x)) (< (f x y) (+ (f y x) (f x y)))),Timeout,45803
+186,(or (= (+ (f x y) y) x) (= (+ (f x y) y) x)),Timeout,42539
+187,(and (<= (f x y) (- (f y x) (f x y))) (<= (f x y) (- (f y x) (f x y)))),Timeout,43089
+188,(or (>= (+ (f y x) y) (- (f y x) (f y x))) (<= (f x y) x)),Timeout,44813
+189,(and (<= (f y x) (+ (f y x) (f x y))) (<= (f y x) (+ (f y x) (f x y)))),Timeout,41004
+190,(or (>= y y) (> x (f x y))),Timeout,42706
+191,(and (< (f y x) (- x x)) (< (f y x) (- x x))),Timeout,39512
+192,(and (< (f y x) (+ y y)) (< (f y x) (+ y y))),Timeout,39939
+193,(or (<= (- y x) (f x y)) (>= y (f x y))),Timeout,37195
+194,(or (<= x y) (= (f x y) (- y (f x y)))),Timeout,41249
+195,(and (= (+ (f x y) y) x) (> x (f y x))),Timeout,38402
+196,(or (< (+ (+ (f y x) y) (f y x)) (+ (+ (f y x) y) (f y x))) (> (f x y) y)),Timeout,41997
+197,(and (<= (- (f y x) y) x) (<= (- (f y x) y) x)),Timeout,35644
+198,(or (< (+ (f y x) (f y x)) y) (>= (f y x) (- (f y x) x))),Timeout,42270
+199,(or (= y x) (<= y (- (f x y) x))),Timeout,38895
+200,(or (= (f y x) (f x y)) (= (f y x) (f x y))),Timeout,40987
+201,(or (>= (- (f y x) x) y) (>= (f x y) (- y y))),Timeout,44092
+202,(or (>= (f x y) y) (>= (f x y) y)),Timeout,39714
+203,(and (= (+ (f y x) x) (+ (f y x) x)) (= (+ (f y x) x) (+ (f y x) x))),Timeout,41778
+204,(and (>= (- (f x y) (f x y)) (f x y)) (> (f x y) (f y x))),Timeout,40452
+205,(and (< (- (f x y) (f y x)) (- (f x y) (f y x))) (< (- (f x y) (f y x)) (- (f x y) (f y x)))),Timeout,41132
+206,(or (< (+ (f y x) (- x y)) y) (< (+ (f y x) (- x y)) y)),Timeout,37976
+207,(and (>= x (+ x x)) (= (f y x) y)),Timeout,41991
+208,(or (< (+ (f y x) (f x y)) (f x y)) (< (+ (f y x) (f x y)) (f x y))),Timeout,37367
+209,(and (>= y (f y x)) (>= (+ x (f y x)) (+ x (f y x)))),Timeout,40960
+210,(and (> y (f y x)) (= (f y x) x)),Timeout,43544
+211,(or (< (f x y) (f y x)) (<= (f x y) (f x y))),Timeout,39690
+212,(and (> y (+ (f x y) y)) (>= (f y x) (- (f x y) y))),Timeout,42064
+213,(and (<= (f y x) y) (= (- x (f x y)) (f y x))),Timeout,39801
+214,(or (= x (+ (f y x) y)) (= x (+ (f y x) y))),Timeout,39577
