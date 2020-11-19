@@ -111,13 +111,13 @@ int main()
         {
             i++;
             // std::cout<<line<<std::endl;
-            cmd = "timeout 10s cvc4 /home/ravi/Ubuntu-WSL-20/PSML/benchmarks/comp/2019/CLIA_Track/from_2018/"+line+" 2> /dev/null";
+            cmd = "timeout 60s cvc4 /home/ravi/Ubuntu-WSL-20/PSML/benchmarks/comp/2019/CLIA_Track/from_2018/"+line+" 2> /dev/null";
             auto t1 = std::chrono::high_resolution_clock::now();
             result = runCVC4(cmd);
             auto t2 = std::chrono::high_resolution_clock::now();
             auto duration = std::chrono::duration_cast<std::chrono::microseconds>( t2 - t1 ).count();
             execTime = std::to_string(duration);
-            name = "SynthesisTime4CLIA(Timeout=10sec).csv";
+            name = "SynthesisTime4CLIA(Timeout=60sec).csv";
 
             if(result == "\0")
             {

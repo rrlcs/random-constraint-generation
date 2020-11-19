@@ -1,0 +1,36 @@
+(synth-fun max2 ((x Int)(y Int)) Int
+    (
+        (Start Int (StartInt))
+        (StartInt Int (x y ConstantInt
+                (+ StartInt StartInt)
+                (- StartInt StartInt)
+                (* StartInt ConstantInt)
+                (* ConstantInt StartInt)
+                (div StartInt ConstantInt)
+                (mod StartInt ConstantInt)
+                (ite StartBool StartInt StartInt)
+            )
+        )
+        (ConstantInt (Constant Int))
+        (StartBool Bool 
+            (
+                true false
+                (and StartBool StartBool)
+                (or StartBool StartBool)
+                (=> StartBool StartBool)
+                (xor StartBool StartBool)
+                (xnor StartBool StartBool)
+                (nand StartBool StartBool)
+                (nor StartBool StartBool)
+                (iff StartBool StartBool)
+                (not StartBool)
+                (= StartBool StartBool)
+                (<= StartInt StartInt)
+                (= StartInt StartInt)
+                (>= StartInt StartInt)
+                (> StartInt StartInt)
+                (< StartInt StartInt)
+            )
+        )
+    )
+)

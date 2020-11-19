@@ -5,7 +5,7 @@
 #include <fstream>
 #include <chrono>
 #include <algorithm>
-#include <string>
+// #include <string>
 //Header only libraries
 #include "expressionAst.h"
 // #include "expressionVisitors.h"
@@ -150,26 +150,30 @@ int main(int argc, char* argv[])
     std::string func = "f";
     std::string constraint;
     std::string sygusFile;
+    std::string cmd1 = "python constraint-generator.py";
+    std::string program_ext;
     while(tmp)
     {
-        constraint = getRandomConstraint(numOfOperator, ArithmaticOperandList, ArithmaticOperatorList, ComparisonOperandList, ComparisonOperatorList, LogicalOperandList, LogicalOperatorList);
+        //constraint = getRandomConstraint(numOfOperator, ArithmaticOperandList, ArithmaticOperatorList, ComparisonOperandList, ComparisonOperatorList, LogicalOperandList, LogicalOperatorList);
+        constraint = runCVC4(cmd1);
+        constraint.erase(std::remove(constraint.begin(), constraint.end(), '\n'), constraint.end());
         if (constraint.find(func) != std::string::npos)
         {
             // std::cout << "found!" << '\n';
             sygusFile = insertConstraint(templateFile, constraint);
             std::string name = "randomlyGeneratedBenchmark_"+filenum+".sl";
-            std::ofstream slFile("Dataset10000v2/"+name);
+            std::ofstream slFile("Dataset-TSE/"+name);
             slFile << sygusFile;
             slFile.close();
             std::string program="\0";
-            std::string cmd = "timeout 0.1s cvc4 /home/ravi/Ubuntu-WSL-20/PSML/DatasetGeneration/Dataset10000v2/"+name+" 2> /dev/null";
+            std::string cmd = "timeout 0.1s cvc4 /home/ravi/Ubuntu-WSL-20/PSML/DatasetGeneration/Dataset-TSE/"+name+" 2> /dev/null";
             std::string result = runCVC4(cmd);
 
             auto t2 = std::chrono::high_resolution_clock::now();
             auto duration = std::chrono::duration_cast<std::chrono::microseconds>( t2 - t1 ).count();
 
             std::string execTime = std::to_string(duration);
-            name = "datasetGenerated"+datapoints+"v2.csv";
+            name = "datasetGeneratedForTSE"+datapoints+".csv";
             if(result == "\0")
             {
                 // std::cout<<"Error: Timeout";
@@ -183,7 +187,9 @@ int main(int argc, char* argv[])
             {
                 program = result.substr(6, result.size() - 6);
                 program.erase(std::remove(program.begin(), program.end(), '\n'), program.end());
-                writeToCSV(name, "\n"+filenum+","+constraint+","+program+","+execTime, true);
+                program_ext = program;
+                program_ext.erase(1, 35);
+                writeToCSV(name, "\n"+filenum+","+constraint+","+program+","+program_ext+","+execTime, true);
             }
 
             tmp = 0;

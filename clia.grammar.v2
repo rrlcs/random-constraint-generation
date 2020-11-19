@@ -1,0 +1,28 @@
+(synth-fun max2 ((x Int)(y Int)) Int
+    ((I Int) (B Bool))
+    
+    ((I Int (x y ConstantInt
+            (+ I I)
+            (- I I)
+            (* I C)
+            (* C I)
+            (div I C)
+            (mod I C)
+            (ite B I I)))
+     (ConstantInt (Constant Int))
+     (B Bool (true false
+             (and B B)
+             (or B B)
+             (=> B B)
+             (xor B B)
+             (xnor B B)
+             (nand B B)
+             (nor B B)
+             (iff B B)
+             (not B)
+             (= B B)
+             (<= I I)
+             (>= I I)
+             (< I I)
+             (> I I)
+             (= I I))))
