@@ -41,7 +41,7 @@ std::string insertConstraint(std::string templateFile, std::string constraint)
     return templateFile;
 }
 
-std::string runCVC4(std::string command) {
+std::string executeCommand(std::string command) {
     // std::cout<<command;
         
 
@@ -145,43 +145,43 @@ int main(int argc, char* argv[])
     exp1 = new FormulaBinaryExp(y, x, f);
     ArithmaticOperandList.push_back(exp1);
 
-    std::string templateFile = "(set-logic LIA)\n(synth-fun f ((x Int) (y Int)) Int)\n(declare-var x Int)\n(declare-var y Int)\n(constraint $$)\n(check-synth)";
+    std::string templateFile = "(set-logic LIA)\n(synth-fun f ((x Int) (y Int)) Int\n((I Int) (C Int) (B Bool))\n((I Int (x y C\n(+ I I)\n(- I I)\n(* I C)\n(* C I)\n(div I C)\n(mod I C)\n(ite B I I)))\n(C Int (0 1 2 3 4 5 6 7 8 9))\n(B Bool (true false\n(and B B)\n(or B B)\n(=> B B)\n(xor B B)\n;(xnor B B)\n;(nand B B)\n;(nor B B)\n;(iff B B)\n(not B)\n(= B B)\n(<= I I)\n(>= I I)\n(< I I)\n(> I I)\n(= I I)))))\n(declare-var x Int)\n(declare-var y Int)\n(constraint $$)\n(check-synth)";
     int tmp = 1;
     std::string func = "f";
     std::string constraint;
     std::string sygusFile;
-    std::string cmd1 = "python constraint-generator.py";
+    std::string cmdForConstraint = "python constraint-generator.py";
     std::string program_ext;
     while(tmp)
     {
-        constraint = getRandomConstraint(numOfOperator, ArithmaticOperandList, ArithmaticOperatorList, ComparisonOperandList, ComparisonOperatorList, LogicalOperandList, LogicalOperatorList);
-        // constraint = runCVC4(cmd1); //Grammar based constraint generation
+        // constraint = getRandomConstraint(numOfOperator, ArithmaticOperandList, ArithmaticOperatorList, ComparisonOperandList, ComparisonOperatorList, LogicalOperandList, LogicalOperatorList);
+        constraint = executeCommand(cmdForConstraint); //Grammar based constraint generation
         constraint.erase(std::remove(constraint.begin(), constraint.end(), '\n'), constraint.end());
         if (constraint.find(func) != std::string::npos)
         {
             // std::cout << "found!" << '\n';
             sygusFile = insertConstraint(templateFile, constraint);
             std::string name = "randomlyGeneratedBenchmark_"+filenum+".sl";
-            std::ofstream slFile("Dataset-TSE/"+name);
+            std::ofstream slFile("DatasetWithGrammar/"+name);
             slFile << sygusFile;
             slFile.close();
             std::string program="\0";
-            std::string cmd = "timeout 0.1s cvc4 /home/ravi/Ubuntu-WSL-20/PSML/DatasetGeneration/Dataset-TSE/"+name+" 2> /dev/null";
-            std::string result = runCVC4(cmd);
+            std::string cmdForCVC4 = "timeout 0.1s cvc4 /home/ravi/Ubuntu-WSL-20/PSML/DatasetGeneration/DatasetWithGrammar/"+name+" 2> /dev/null";
+            std::string result = executeCommand(cmdForCVC4);
 
             auto t2 = std::chrono::high_resolution_clock::now();
             auto duration = std::chrono::duration_cast<std::chrono::microseconds>( t2 - t1 ).count();
 
             std::string execTime = std::to_string(duration);
-            name = "datasetGeneratedForTSE"+datapoints+".csv";
+            name = "dataGeneratedWithGrammar"+datapoints+".csv";
             if(result == "\0")
             {
                 // std::cout<<"Error: Timeout";
-                writeToCSV(name, "\n"+filenum+","+constraint+","+"Timeout"+","+execTime, true);
+                writeToCSV(name, "\n"+filenum+","+constraint+","+"Timeout"+","+"Timeout"+","+execTime, true);
             }
             else if (result == "unknown\n")
             {
-                writeToCSV(name, "\n"+filenum+","+constraint+","+"unknown"+","+execTime, true);
+                writeToCSV(name, "\n"+filenum+","+constraint+","+"unknown"+","+"unknown"+","+execTime, true);
             }
             else
             {
@@ -197,14 +197,6 @@ int main(int argc, char* argv[])
     }
     // std::cout<<constraint;
     // std::cout<<"\n";
-
-    
-
-    
-    
-    
-
-    
     // std::cout << "Execution Time: " << duration;
     // std::ofstream et("")
 

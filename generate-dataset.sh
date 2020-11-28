@@ -1,6 +1,6 @@
-datapoints=100
+datapoints=50000
 shopt -s nullglob
-numfiles=(./Dataset-TSE/*) #Count files in this folder
+numfiles=(./DatasetWithGrammar/*) #Count files in this folder
 numfiles=${#numfiles[@]}
 # echo $numfiles
 range=datapoints+numfiles
