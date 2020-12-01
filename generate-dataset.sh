@@ -1,4 +1,4 @@
-datapoints=50000
+datapoints=101
 shopt -s nullglob
 numfiles=(./DatasetWithGrammar/*) #Count files in this folder
 numfiles=${#numfiles[@]}

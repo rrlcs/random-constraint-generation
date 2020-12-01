@@ -145,7 +145,7 @@ int main(int argc, char* argv[])
     exp1 = new FormulaBinaryExp(y, x, f);
     ArithmaticOperandList.push_back(exp1);
 
-    std::string templateFile = "(set-logic LIA)\n(synth-fun f ((x Int) (y Int)) Int\n((I Int) (C Int) (B Bool))\n((I Int (x y C\n(+ I I)\n(- I I)\n(* I C)\n(* C I)\n(div I C)\n(mod I C)\n(ite B I I)))\n(C Int (0 1 2 3 4 5 6 7 8 9))\n(B Bool (true false\n(and B B)\n(or B B)\n(=> B B)\n(xor B B)\n;(xnor B B)\n;(nand B B)\n;(nor B B)\n;(iff B B)\n(not B)\n(= B B)\n(<= I I)\n(>= I I)\n(< I I)\n(> I I)\n(= I I)))))\n(declare-var x Int)\n(declare-var y Int)\n(constraint $$)\n(check-synth)";
+    std::string templateFile = "(set-logic LIA)\n(synth-fun f ((x Int) (y Int)) Int\n((I Int) (C Int) (B Bool))\n((I Int ((Variable Int) C\n(+ I I)\n(- I I)\n(* I C)\n(* C I)\n(ite B I I)))\n(C Int ((Constant Int)))\n(B Bool (true false\n(and B B)\n(or B B)\n(=> B B)\n(xor B B)\n;(xnor B B)\n;(nand B B)\n;(nor B B)\n;(iff B B)\n(not B)\n(= B B)\n(<= I I)\n(>= I I)\n(< I I)\n(> I I)\n(= I I)))))\n(declare-var x Int)\n(declare-var y Int)\n(constraint $$)\n(check-synth)";
     int tmp = 1;
     std::string func = "f";
     std::string constraint;
@@ -166,7 +166,7 @@ int main(int argc, char* argv[])
             slFile << sygusFile;
             slFile.close();
             std::string program="\0";
-            std::string cmdForCVC4 = "timeout 0.1s cvc4 /home/ravi/Ubuntu-WSL-20/PSML/DatasetGeneration/DatasetWithGrammar/"+name+" 2> /dev/null";
+            std::string cmdForCVC4 = "timeout 0.1s cvc4 /Users/stanly/Project/random-constraint-generation/DatasetWithGrammar/"+name+" 2> /dev/null";
             std::string result = executeCommand(cmdForCVC4);
 
             auto t2 = std::chrono::high_resolution_clock::now();

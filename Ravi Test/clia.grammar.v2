@@ -26,3 +26,30 @@
              (< I I)
              (> I I)
              (= I I))))
+
+
+( set - logic LIA )
+( synth - fun f (( x Int )) Int
+
+(( I Int ) ( C Int ) ( B Bool ))
+
+(( I Int ( C
+( Variable Int )
+( - I )
+(+ I I )
+( - I I )
+(* C I )
+(* I C )
+( div I C )
+( mod I C )
+( abs I )
+( ite B I I )))
+( C Int (( Constant Int )))
+
+( B Bool ((= I I )
+( > I I )
+( >= I I )
+( < I I )
+( <= I I )))
+
+))
